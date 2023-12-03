@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <br>
+    <h5 class="card-title">{{ gasto.Gasto }} - {{ gasto.Tienda }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{ gasto.Descripcion }}</li>
+        <li class="list-group-item">{{ gasto.Importe }}</li>
+        <li class="list-group-item">{{ gasto.Moneda }}</li>
+        <li class="list-group-item">{{ gasto.Fecha }}</li>
+    </ul>
+    <br>
+    <div class="card-body">
+        <a href="/edit/{{gasto.id}}/{{user}}" class="card-link btn btn-primary">EDITAR</a>
+    </div>
+</div>
+<br>
+<form action="/delete/{{gasto.id}}/{{user}}" method="post"><button type="submit" class="btn btn-danger">BORRAR</button></form>
+
+
+{% endblock %}

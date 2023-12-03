@@ -1,0 +1,55 @@
+version: "2"
+services:
+  app:
+    image: alvarovelascoprieto/app
+    container_name: "app"
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    networks:
+      common:
+        ipv4_address: 172.26.1.1
+
+  db:
+    image: alvarovelascoprieto/db
+    container_name: "MySQL_DB"
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db/data:/var/lib/mysql
+    networks:
+      - common
+
+  converter:
+    image: alvarovelascoprieto/converter
+    container_name: "converter"
+    environment:
+      - NODE_ENV=production
+      - PORT=9393
+    ports:
+      - '9393:9393'
+    networks:
+      common:
+        ipv4_address: 172.26.1.2
+    
+  nginx:
+      image: alvarovelascoprieto/nginx
+      container_name: nginx
+      depends_on:
+          - app
+      networks:
+          - common
+      ports:
+          - 80:80
+
+networks:
+  common:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.26.0.0/16

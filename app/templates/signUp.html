@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/signUp" method="POST">
+    <div class="row">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" class="form-control" placeholder="Nombre" name="nombre">
+    </div>
+    <div class="row">
+        <label for="apellidos">Apellidos</label>
+        <input id="apellidos" type="text" class="form-control" placeholder="Apellidos" name="apellidos">
+    </div>
+    <div class="row">
+        <label for="email">email</label>
+        <input id="email" type="email" class="form-control" placeholder="email@domain.dom" name="email">
+    </div>
+    <div class="row">
+        <label for="password">Contrasena</label>
+        <input id="password" type="password" class="form-control" placeholder="Contrasena" name="password">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Registrarse</button>
+</form>
+{% endblock %}
