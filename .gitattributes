@@ -1,2 +1,6 @@
-converter/* linguist-vendored
 db/data/* linguist-vendored
+*.bas linguist-detectable=false
+*.cls linguist-detectable=false
+*.ctl linguist-detectable=false
+*.Dsr linguist-detectable=false
+*.frm linguist-detectable=false
